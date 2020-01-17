@@ -39,7 +39,6 @@ nav{
   font-size: 12px;
   font-weight: initial;
   height: 40px;
-  border-left: 1px solid white;
   padding: 0 20px;
 }
 
@@ -61,6 +60,7 @@ nav a:hover {
   min-height: 450px;
   min-width: 350px;
   background: rgba(128, 128, 128, 0.5);
+  box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
   margin: 40px 0;
   padding: 20px;
   border-radius: 10px;
@@ -71,13 +71,12 @@ nav a:hover {
 
 .list-container{
   height: 100%;
+  max-height: 561.725px;
   width: 100%;
   background: rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
-  padding: 4px 0;
-  margin: 0;
-  border-radius: 10px;
+  overflow-y: scroll;
 }
 
 
@@ -87,11 +86,41 @@ nav a:hover {
   align-items: center;
   width: 100%;
   font-size: 10px;
-  line-height: 20px;
+  line-height: 30px;
   color: black;
-  height: 20px;
+  height: 30px;
   background: rgba(102, 51, 153, 0.1);
   transition: all .125s ease;
+}
+
+.list-item input {
+  background: transparent;
+  color: black;
+  border: none;
+  border-bottom: 1px solid grey;
+}
+
+.list-item input::placeholder {
+  color: black;
+}
+
+.list-item input:focus {
+  border: 1px solid rebeccapurple;
+}
+
+.list-item select {
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 4px;
+}
+
+.list-item select::placeholder {
+  color: black;
+}
+
+.list-item select:focus {
+  border: 1px solid rebeccapurple;
 }
 
 .list-item:nth-of-type(even){
@@ -102,17 +131,10 @@ nav a:hover {
   background: rgba(102, 51, 153, 0.3)
 }
 
-
-
-#title{
-  border-bottom: 2px solid rebeccapurple;
-  background: transparent;
-  overflow: hidden;
-}
-
 #item-c{
   width: calc(25% - 4px);
-  height: 20px;
+  line-height: 20px;
+  height: 24px;
   font-size: 10px;
   padding: 0 12px;
   margin: 0 0 0 4px;
@@ -120,7 +142,7 @@ nav a:hover {
 
 #qty-c{
   width: calc(15% - 4px);
-  height: 20px;
+  height: 24px;
   line-height: 20px;
   font-size: 10px;
   padding: 0 12px;
@@ -129,7 +151,7 @@ nav a:hover {
 
 #unit-c{
   width: calc(15% - 4px);
-  height: 20px;
+  height: 24px;
   line-height: 20px;
   font-size: 10px;
   padding: 0 12px;
@@ -138,7 +160,7 @@ nav a:hover {
 
 #exp-c{
   width: calc(25% - 4px);
-  height: 20px;
+  height: 24px;
   line-height: 20px;
   font-size: 10px;
   padding: 0 12px;
@@ -152,10 +174,9 @@ nav a:hover {
 }
 
 #buttons-c button { 
-  font-size: 8px;
-  width: auto;
-  min-width: 40px;
-  height: 14px;
+  font-size: 10px;
+  width: 25px;
+  height: 25px;
   border-radius: 10px;
   border: 2px solid transparent;
   background: rebeccapurple;
@@ -196,12 +217,14 @@ nav a:hover {
   flex-direction: column;
   justify-content: flex-start;
   margin-bottom: 10px;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
 }
 
 .add-item input{
   background: rgba(255, 255, 255, .2);
   border: none;
-  width: 80%;
+  border-radius: 4px;
+  width: 100%;
   height: 30px;
   margin: 3px 0;
   padding: 10px 4px 0 4px;
@@ -209,21 +232,34 @@ nav a:hover {
 }
 
 #qty{
-  width: 60%;
+  width: 50%;
+  margin-right: 5px;
+}
+
+#itemnum{
+  color: white;
+  border-right: 2px solid white;
+  padding-right: 12px;
+  line-height: 30px;
 }
 
 .add-item select{
   background: rgba(255, 255, 255, .2);
   border: none;
-  width: 30%;
+  border-radius: 4px;
+  width: 50%;
   height: 30px;
   color: rgba(0, 0, 0, .5);
   overflow: hidden;
+  margin-left: 5px;
+  line-height: 12px;
+  font-size: 12px;
 }
 
 .add-item button{
   background: rgba(255, 255, 255, .2);
   border: none;
+  border-radius: 4px;
   width: 100px;
   height: 30px;
   margin: 3px 0;
@@ -245,7 +281,7 @@ h4{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -255,6 +291,87 @@ h4{
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.glance-r{
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 4px;
+}
+
+.fridge-search{
+  width: Calc(100% - 48px);
+  height: 24px;
+  border-radius: 12px;
+  border: none;
+  padding: 0 4px;
+}
+
+.label{
+  font-size: 14px;
+}
+
+.table-container{
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.fridge-header{
+  display: flex;
+  align-self: center;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-size: 12px;
+  border-bottom: 2px solid rebeccapurple;
+  border-radius: 10px 10px 0 0;
+  color: black;
+  height: 20px;
+  background: transparent;
+  transition: all .125s ease;
+}
+
+.fridge-header:nth-child(1n+0){
+  background: white;
+  padding-top: 5px;
+}
+
+.fridge-footer{
+  display: flex;
+  align-self: center;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-size: 10px;
+  line-height: 20px;
+  border-top: 2px solid rebeccapurple;
+  border-radius: 0 0 10px 10px;
+  color: black;
+  height: 40px;
+  background: transparent;
+  transition: all .125s ease;
+}
+
+.fridge-footer button { 
+  font-size: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: rebeccapurple;
+  color: white;
+  cursor: pointer;
+  transition: all .25s ease;
 }
 
 .none{
@@ -271,6 +388,31 @@ h4{
   color: white;
   overflow: hidden;
   animation: show-error .25s ease;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(128, 128, 128, 0.5);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(102, 51, 153, 0.5);
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 51, 153, 0.7);
+}
+
+h2{
+  text-transform: uppercase;
+  width: 20px;
+  height: 100%;
+  letter-spacing: 10px;
+  writing-mode: vertical-rl;
 }
 
 @media (max-width: 1230px) {

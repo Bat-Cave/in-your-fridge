@@ -8,31 +8,27 @@ class Fridge extends Component{
     super(props);
 
     this.state = {
-      items: [],
       itemIn: '',
       qtyIn: null,
       unitIn: '',
       expIn: '',
       addError: '',
-      error: 'none'
+      error: 'none',
+      search: '',
     }
   }
 
   componentDidMount(){
     this.updateFridge();
+    this.setState({items: this.props.items})
   }
 
   updateFridge = () => {
-    axios.get('/api/items')
-    .then(res => {
-      this.setState({items: res.data});
-    })
-    .catch(err => console.log(err));
+    this.props.updateFridgeFn();
   }
 
   handleInput = (name, val) => {
     this.setState({[name] : val})
-    console.log(this.state[name]);
   }
 
   addItem = () => {
@@ -63,13 +59,20 @@ class Fridge extends Component{
     this.updateFridge();
   }
 
+  searchFridge = () => {
+    this.props.searchFridgeFn(this.state.search)
+  }
+
   render(){
     return(
       <div className='card fridge'>
+        <h2>Fridge</h2>
         <Itemlist 
-          items={this.state.items}
+          items={this.props.items}
+          handleInputFn={this.handleInput}
           updateItemFn={this.updateItem}
           deleteItemFn={this.deleteItem}
+          searchItemFn={this.searchFridge}
           />
         <div className='fridge-side'>
           <div className='add-item'>
@@ -91,24 +94,31 @@ class Fridge extends Component{
                 name='unitIn' 
                 value='Units'
                 onChange={(e) => this.handleInput(e.target.name, e.target.value)}>
-                <option></option>
-                <option value='oz'>Ounces</option>
-                <option value='gal'>Gallons</option>
+                <option>Units</option>
+                <option value='tsp.'>Teaspoons</option>
+                <option value='tbl.'>Tablespoons</option>
+                <option value='fl oz'>Fluid Ounces</option>
+                <option value='c'>Cups</option>
                 <option value='p'>Pints</option>
                 <option value='q'>Quarts</option>
-                <option value='c'>Cups</option>
+                <option value='ml'>Milliliters</option>
+                <option value='l'>Liters</option>
+                <option value='gal'>Gallons</option>
               </select>
             </div>
             <input 
               name='expIn' 
-              type='date' 
+              type='date'
+              data-date-format="DD MMMM YYYY" 
               placeholder='Expiration Date'
               onChange={(e) => this.handleInput(e.target.name, e.target.value)}
               />
             <button onClick={this.addItem}>Add Item</button>
             <p className={this.state.error}>Please fill all input fields</p>
           </div>
-          <Glance />
+          <Glance 
+            items={this.props.items}
+          />
         </div>
       </div>
     )
@@ -116,3 +126,17 @@ class Fridge extends Component{
 }
 
 export default Fridge
+
+/* Food Categories 
+Fruits
+Vegetables
+Dairy
+Proteins
+Grains
+Beverages
+Condiments
+Snacks/Sweets
+
+
+
+*/

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Header = () => {
+function Header(props){
   return(
     <header>
       <span>In <span className='white'>Your</span> Fridge</span>

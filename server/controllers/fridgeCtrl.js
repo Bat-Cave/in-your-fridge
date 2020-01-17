@@ -26,6 +26,27 @@ const itemsInFridge = [{
     unit: "",
     exp: "2020-01-21"
   },
+  {
+    id: 4,
+    item: "Milk",
+    qty: "2",
+    unit: "gal",
+    exp: "2020-01-21"
+  },
+  {
+    id: 5,
+    item: "Butter",
+    qty: "16",
+    unit: "oz",
+    exp: "2020-01-21"
+  },
+  {
+    id: 6,
+    item: "Iceberg Lettuce",
+    qty: "2",
+    unit: "",
+    exp: "2020-01-21"
+  }
 ];
 let id = 0;
 
@@ -49,10 +70,10 @@ module.exports = {
     const {id} = req.params;
     const { itemEdit, qtyEdit, unitEdit, expEdit } = req.body;
     const i = itemsInFridge.findIndex(e => e.id === +id);
-    itemsInFridge[id].item = req.body.itemEdit;
-    itemsInFridge[id].qty = req.body.qtyEdit;
-    itemsInFridge[id].unit = req.body.unitEdit;
-    itemsInFridge[id].exp = req.body.expEdit
+    itemsInFridge[id].item = itemEdit;
+    itemsInFridge[id].qty = qtyEdit;
+    itemsInFridge[id].unit = unitEdit;
+    itemsInFridge[id].exp = expEdit
     res.status(200).send(itemsInFridge);
   },
   deleteItem: (req, res) => {
@@ -60,5 +81,10 @@ module.exports = {
     const i = itemsInFridge.findIndex(e => e.id === +id);
     itemsInFridge.splice(i, 1);
     res.status(200).send(itemsInFridge);
+  },
+  searchFridge: (req, res) => {
+    const { item } = req.params;
+    const filteredItems = itemsInFridge.filter(i => i.item.includes(item));
+    res.status(200).send(filteredItems)
   }
 }

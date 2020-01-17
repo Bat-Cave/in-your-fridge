@@ -44,7 +44,7 @@ class Item extends Component{
 
   render(){
     return(
-      <div className='list-item'>
+      <div onDoubleClick={this.toggleEdit} className='list-item'>
         {this.state.toggleEdit ? 
           <input
             id='item-c' 
@@ -69,7 +69,7 @@ class Item extends Component{
             name='unitEdit'
             value={this.state.unitEdit}
             onChange={(e) => this.handleInput(e.target.name, e.target.value)}>
-            <option></option>
+            <option>Units</option>
             <option value='oz'>Ounces</option>
             <option value='gal'>Gallons</option>
             <option value='p'>Pints</option>
@@ -87,12 +87,12 @@ class Item extends Component{
           : <p id='exp-c'>{this.props.exp}</p>}
         {this.state.toggleEdit ? 
           <p id='buttons-c'>
-            <button onClick={() => this.updateItem(this.props.id)}>Confirm</button>
-            <button onClick={() => this.toggleEdit()}>Cancel</button>
+            <button onClick={() => this.updateItem(this.props.id)}><i className="fas fa-check"></i></button>
+            <button onClick={() => this.toggleEdit()}><i className="fas fa-times"></i></button>
         </p>
           : <p id='buttons-c'>
-              <button onClick={() => this.toggleEdit()}>Edit</button>
-              <button onClick={() => this.deleteItem(this.props.id)}>Delete</button>
+              <button onClick={() => this.toggleEdit()}><i className="fas fa-pencil-alt"></i></button>
+              <button onClick={() => this.deleteItem(this.props.id)}><i className="fas fa-trash-alt"></i></button>
             </p>}
       </div>
     )
