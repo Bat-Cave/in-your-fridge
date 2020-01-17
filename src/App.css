@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  outline: none;
 }
 
 .container{
@@ -11,8 +12,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 75px;
-  padding: 0 200px;
+  padding: 0 175px;
   background: oldlace;
+  overflow-x: hidden;
 }
 
 header{
@@ -24,7 +26,7 @@ header{
   background: rebeccapurple;
   height: 75px;
   width: 100vw;
-  padding: 0 200px;
+  padding: 0 175px;
   font-size: 20px;
   font-weight: 900;
 }
@@ -43,7 +45,15 @@ nav{
 
 nav a {
   text-decoration: none;
+  color: black;
   text-transform: uppercase;
+  border-bottom: 2px solid transparent;
+  transition: .25s all ease;
+}
+
+nav a:hover {
+  border-bottom: 2px solid white;
+  cursor: pointer;
 }
 
 .card{
@@ -55,17 +65,21 @@ nav a {
   padding: 20px;
   border-radius: 10px;
   display: flex;
+  transition: all .25s ease;
 }
+
 
 .list-container{
   height: 100%;
-  width: 60%;
-  background: white;
-  border-radius: 10px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
-  padding: 4px;
+  padding: 4px 0;
+  margin: 0;
+  border-radius: 10px;
 }
+
 
 .list-item{
   display: flex;
@@ -75,26 +89,60 @@ nav a {
   font-size: 10px;
   line-height: 20px;
   color: black;
+  height: 20px;
+  background: rgba(102, 51, 153, 0.1);
+  transition: all .125s ease;
 }
+
+.list-item:nth-of-type(even){
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.list-item:hover{
+  background: rgba(102, 51, 153, 0.3)
+}
+
+
 
 #title{
   border-bottom: 2px solid rebeccapurple;
+  background: transparent;
+  overflow: hidden;
 }
 
 #item-c{
-  width: 25%;
+  width: calc(25% - 4px);
+  height: 20px;
+  font-size: 10px;
+  padding: 0 12px;
+  margin: 0 0 0 4px;
 }
 
 #qty-c{
-  width: 15%;
+  width: calc(15% - 4px);
+  height: 20px;
+  line-height: 20px;
+  font-size: 10px;
+  padding: 0 12px;
+  margin: 0 0 0 4px;
 }
 
 #unit-c{
-  width: 15%;
+  width: calc(15% - 4px);
+  height: 20px;
+  line-height: 20px;
+  font-size: 10px;
+  padding: 0 12px;
+  margin: 0 0 0 4px;
 }
 
 #exp-c{
-  width: 25%;
+  width: calc(25% - 4px);
+  height: 20px;
+  line-height: 20px;
+  font-size: 10px;
+  padding: 0 12px;
+  margin: 0 0 0 4px;
 }
 
 #buttons-c{
@@ -104,13 +152,21 @@ nav a {
 }
 
 #buttons-c button { 
-  font-size: 10px;
-  width: 18px;
-  height: 18px;
+  font-size: 8px;
+  width: auto;
+  min-width: 40px;
+  height: 14px;
   border-radius: 10px;
-  border: none;
+  border: 2px solid transparent;
   background: rebeccapurple;
   color: white;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+#buttons-c button:hover { 
+  background: white;
+  color: rebeccapurple;
 }
 
 .fridge{
@@ -125,7 +181,7 @@ nav a {
 .fridge-side{
   width: 40%;
   height: 100%;
-  margin-left: 20px;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -133,21 +189,21 @@ nav a {
 .add-item{
   width: 100%;
   height: 50%;
-  background: rgb(175, 147, 95);
+  background: rgba(102, 51, 153, 0.5);
   border-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-bottom: 10px;
 }
 
 .add-item input{
   background: rgba(255, 255, 255, .2);
-  color: black;
   border: none;
   width: 80%;
   height: 30px;
-  margin: 4px 0;
+  margin: 3px 0;
   padding: 10px 4px 0 4px;
   color: rgba(0, 0, 0, .5)
 }
@@ -158,22 +214,31 @@ nav a {
 
 .add-item select{
   background: rgba(255, 255, 255, .2);
-  color: black;
   border: none;
   width: 30%;
   height: 30px;
-  color: rgba(0, 0, 0, .5)
+  color: rgba(0, 0, 0, .5);
+  overflow: hidden;
 }
 
 .add-item button{
   background: rgba(255, 255, 255, .2);
-  color: black;
   border: none;
   width: 100px;
   height: 30px;
-  margin: 4px 0;
+  margin: 3px 0;
   color: rgba(0, 0, 0, .5);
   cursor: pointer;
+  transition: .25s all ease;
+}
+
+.add-item button:hover{
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+h4{
+  overflow: hidden;
 }
 
 .qty-unit-container{
@@ -181,11 +246,47 @@ nav a {
   justify-content: space-between;
   align-items: center;
   width: 80%;
+  overflow: hidden;
 }
 
 .glance{
   width: 100%;
   height: 50%;
-  background: orange;
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
+  padding: 10px;
+}
+
+.none{
+  display: none;
+}
+
+.white{
+  color: white;
+}
+
+.error{
+  font-size: 10px;
+  font-weight: 800;
+  color: white;
+  overflow: hidden;
+  animation: show-error .25s ease;
+}
+
+@media (max-width: 1230px) {
+  .fridge{
+    width: 100%;
+  }
+  .recipe{
+    width: 100%;
+  }
+}
+
+@keyframes show-error {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }

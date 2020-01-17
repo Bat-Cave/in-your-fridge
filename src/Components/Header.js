@@ -3,12 +3,12 @@ import React from 'react'
 const Header = () => {
   return(
     <header>
-      <span>In Your Fridge</span>
+      <span>In <span className='white'>Your</span> Fridge</span>
       <nav>
-        <a>Dashboard</a>
-        <a>Recipes</a>
-        <a>Account</a>
-        <a>Settings</a>
+        <a href='dashboard.com'>Dashboard</a>
+        <a href='dashboard.com'>Recipes</a>
+        <a href='dashboard.com'>Account</a>
+        <a href='dashboard.com'>Settings</a>
       </nav>
     </header>
   )

@@ -1,5 +1,4 @@
 import React from 'react'
-import Itemlist from './Itemlist'
 
 const Glance = () => {
   return(
