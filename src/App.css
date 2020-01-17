@@ -1,38 +1,191 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container{
+  height: calc(100vh - 75px);
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 75px;
+  padding: 0 200px;
+  background: oldlace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  background: rebeccapurple;
+  height: 75px;
+  width: 100vw;
+  padding: 0 200px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+  font-size: 12px;
+  font-weight: initial;
+  height: 40px;
+  border-left: 1px solid white;
+  padding: 0 20px;
+}
+
+nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.card{
+  height: 60vh;
+  min-height: 450px;
+  min-width: 350px;
+  background: rgba(128, 128, 128, 0.5);
+  margin: 40px 0;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+}
+
+.list-container{
+  height: 100%;
+  width: 60%;
+  background: white;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
+  padding: 4px;
+}
+
+.list-item{
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 100%;
+  font-size: 10px;
+  line-height: 20px;
+  color: black;
+}
+
+#title{
+  border-bottom: 2px solid rebeccapurple;
+}
+
+#item-c{
+  width: 25%;
+}
+
+#qty-c{
+  width: 15%;
+}
+
+#unit-c{
+  width: 15%;
+}
+
+#exp-c{
+  width: 25%;
+}
+
+#buttons-c{
+  width: 20%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#buttons-c button { 
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 10px;
+  border: none;
+  background: rebeccapurple;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.fridge{
+  width: calc(60% - 20px);
+  min-width: 450px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.recipe{
+  width: calc(40% - 20px);
+}
+
+.fridge-side{
+  width: 40%;
+  height: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-item{
+  width: 100%;
+  height: 50%;
+  background: rgb(175, 147, 95);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.add-item input{
+  background: rgba(255, 255, 255, .2);
+  color: black;
+  border: none;
+  width: 80%;
+  height: 30px;
+  margin: 4px 0;
+  padding: 10px 4px 0 4px;
+  color: rgba(0, 0, 0, .5)
+}
+
+#qty{
+  width: 60%;
+}
+
+.add-item select{
+  background: rgba(255, 255, 255, .2);
+  color: black;
+  border: none;
+  width: 30%;
+  height: 30px;
+  color: rgba(0, 0, 0, .5)
+}
+
+.add-item button{
+  background: rgba(255, 255, 255, .2);
+  color: black;
+  border: none;
+  width: 100px;
+  height: 30px;
+  margin: 4px 0;
+  color: rgba(0, 0, 0, .5);
+  cursor: pointer;
+}
+
+.qty-unit-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.glance{
+  width: 100%;
+  height: 50%;
+  background: orange;
+  border-radius: 10px;
 }
