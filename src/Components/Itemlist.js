@@ -6,12 +6,12 @@ function Itemlist(props){
     return(
       <div className='table-container'>
         <div className='fridge-header'>
-          <p className='item-c'>Item</p>
-          <p className='qty-c'>Qty.</p>
-          <p className='unit-c'>Units</p>
-          <p className='cat-c'>Category</p>
-          <p className='exp-c'>Exp. Date</p>
-          <p className='buttons-c'>
+          <p id='item-c'>Item</p>
+          <p id='qty-c'>Qty.</p>
+          <p id='unit-c'>Units</p>
+          <p id='cat-c'>Category</p>
+          <p id='exp-c'>Exp. Date</p>
+          <p id='buttons-c'>
           </p>
         </div>
         <div className='list-container'>

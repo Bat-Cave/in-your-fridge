@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Glance = (props) => {
-  console.log(props.items)
   return(
     <div className='glance'>
       <div className='glance-r'>
@@ -10,7 +9,15 @@ const Glance = (props) => {
       </div>
       <div className='glance-r'>
         <span className='label'>Fruits:</span>
-        <p>{}</p>
+        <p>{props.fruits}</p>
+      </div>
+      <div className='glance-r'>
+        <span className='label'>Vegetables:</span>
+        <p>{props.veg}</p>
+      </div>
+      <div className='glance-r'>
+        <span className='label'>Dairy:</span>
+        <p>{props.dairy}</p>
       </div>
     </div>
   )

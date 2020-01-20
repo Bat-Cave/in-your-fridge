@@ -54,7 +54,7 @@ class Fridge extends Component{
   updateItem = (id, body) => {
     axios.put(`/api/items/${id}`, body).then(res => {
     }).catch(err => console.log(err))
-    this.updateFridge();
+    this.props.updateFridge();
   }
 
   deleteItem = (id) => {
@@ -108,6 +108,7 @@ class Fridge extends Component{
                 <option value='ml'>Milliliters</option>
                 <option value='l'>Liters</option>
                 <option value='gal'>Gallons</option>
+                <option value='lb'>Pounds</option>
               </select>
             </div>
             <div className='qty-unit-container'>
@@ -137,6 +138,9 @@ class Fridge extends Component{
           </div>
           <Glance 
             items={this.props.items}
+            fruits={this.props.fruits}
+            veg={this.props.veg}
+            dairy={this.props.dairy}
           />
         </div>
       </div>

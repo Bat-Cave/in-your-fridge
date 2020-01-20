@@ -32,95 +32,110 @@ const itemsInFridge = [{
   },
   {
     id: 4,
-    item: "Milk",
-    qty: "2",
-    unit: "gal",
-    cat: 'Dairy',
+    item: "Peach Jelly",
+    qty: "16",
+    unit: "oz",
+    cat: 'Fruit',
     exp: "01/21/2020"
   },
   {
     id: 5,
-    item: "Butter",
+    item: "Cherry Tomatoes",
     qty: "16",
-    unit: "oz",
-    cat: 'Dairy',
-    exp: "01/21/2020"
-  },
-  {
-    id: 6,
-    item: "Iceberg Lettuce",
-    qty: "2",
-    unit: "",
-    cat: 'Vegetable',
-    exp: "01/21/2020"
-  },
-  {
-    id: 7,
-    item: "Apples",
-    qty: "4",
     unit: "",
     cat: 'Fruit',
     exp: "01/21/2020"
   },
   {
+    id: 6,
+    item: "Italian Dressing",
+    qty: "16",
+    unit: "oz",
+    cat: 'Condiment',
+    exp: "01/21/2020"
+  },
+  {
+    id: 7,
+    item: "Cucumbers",
+    qty: "4",
+    unit: "",
+    cat: 'Vegetable',
+    exp: "01/21/2020"
+  },
+  {
     id: 8,
-    item: "Milk",
+    item: "Ground Beef",
     qty: "2",
-    unit: "gal",
-    cat: 'Dairy',
+    unit: "lb",
+    cat: 'Protein',
     exp: "01/21/2020"
   },
   {
     id: 9,
-    item: "Butter",
-    qty: "16",
-    unit: "oz",
+    item: "Shredded Cheddar Cheese",
+    qty: "4",
+    unit: "c",
     cat: 'Dairy',
     exp: "01/21/2020"
   },
   {
     id: 10,
-    item: "Iceberg Lettuce",
-    qty: "2",
-    unit: "",
+    item: "Spinach",
+    qty: "4",
+    unit: "c",
     cat: 'Vegetable',
     exp: "01/21/2020"
   },
   {
     id: 11,
-    item: "Milk",
-    qty: "2",
-    unit: "gal",
-    cat: 'Dairy',
-    exp: "01/21/2020"
-  },
-  {
-    id: 12,
-    item: "Butter",
-    qty: "16",
+    item: "Peach Yogurt",
+    qty: "36",
     unit: "oz",
     cat: 'Dairy',
     exp: "01/21/2020"
   },
   {
-    id: 13,
-    item: "Iceberg Lettuce",
-    qty: "2",
+    id: 12,
+    item: "Chocolate Cake",
+    qty: "1",
     unit: "",
+    cat: 'Snack/Sweets',
+    exp: "01/21/2020"
+  },
+  {
+    id: 13,
+    item: "Green Beans",
+    qty: "3",
+    unit: "c",
     cat: 'Vegetable',
     exp: "01/21/2020"
   }
 ];
-let id = 0;
+const recipes = [{
+  id: 0,
+  recipe: 'Oreos & Milk',
+  ingredients: ['oreos', 'milk']
+  },
+  {
+    id: 1,
+    recipe: 'PB&J',
+    ingredients: ['bread', 'peanut butter', 'jelly']
+  }
+]
+let itemId = 13;
+let recipeId = 2;
 
 module.exports = {
   getItems: (req, res) => {
     res.status(200).send(itemsInFridge);
   },
+  getRecipes: (req, res) => {
+    res.status(200).send(recipes);
+  },
   addItem: (req, res) => {
     const { item, qty, unit, cat, exp } = req.body;
     const newItem = {
-      id: id++,
+      id: itemId++,
       item,
       qty,
       unit,
@@ -129,6 +144,16 @@ module.exports = {
     };
     itemsInFridge.push(newItem);
     res.status(200).send(itemsInFridge);
+  },
+  addRecipe: (req, res) => {
+    const { recipe, ing } = req.body;
+    const newRecipe = {
+      id: recipeId++,
+      recipe,
+      ingredients: ing
+    };
+    recipes.push(newRecipe);
+    res.status(200).send(recipes);
   },
   updateItem: (req, res) => {
     const {id} = req.params;
@@ -143,11 +168,25 @@ module.exports = {
     itemsInFridge[id].exp = `${mmdd}${yyyy}`
     res.status(200).send(itemsInFridge);
   },
+  updateRecipe: (req, res) => {
+    const {id} = req.params;
+    const { recipeEdit, split } = req.body;
+    const i = itemsInFridge.findIndex(e => e.id === +id);
+    recipes[id].recipe = recipeEdit ;
+    recipes[id].ingredients = split;
+    res.status(200).send(itemsInFridge);
+  },
   deleteItem: (req, res) => {
     const {id} = req.params;
     const i = itemsInFridge.findIndex(e => e.id === +id);
     itemsInFridge.splice(i, 1);
     res.status(200).send(itemsInFridge);
+  },
+  deleteRecipe: (req, res) => {
+    const {id} = req.params;
+    const i = recipes.findIndex(e => e.id === +id);
+    recipes.splice(i, 1);
+    res.status(200).send(recipes);
   },
   searchFridge: (req, res) => {
     const { item } = req.params;

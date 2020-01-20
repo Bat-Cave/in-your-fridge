@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Components/Header'
 import './App.css';
 import Fridge from './Components/Fridge';
+import Recipebook from './Components/Recipebook';
 import axios from 'axios';
 
 class App extends Component {
@@ -10,30 +11,13 @@ class App extends Component {
 
     this.state = {
       items: [],
-      fruits: 0,
-      vegetables: 0,
-      dairy: 0
+      recipes: [],
+      fruits: 3,
+      vegetables: 4,
+      dairy: 4
     }
 
     this.addItem = this.addItem.bind(this);
-  }
-
-  countCat = () => {
-    this.state.items.forEach((item, i) => {
-      if(this.state.items[i].cat === 'Fruit'){
-        this.setState({fruits: this.state.fruits + 1})
-        console.log(this.state.items[i].cat);
-        console.log(this.state.fruits);
-      }else if(this.state.items[i].cat === 'Vegetable'){
-        this.setState({vegetables: this.state.vegetables + 1})
-        console.log(this.state.items[i].cat);
-        console.log(this.state.vegetables);
-      }else if(this.state.items[i].cat === 'Dairy'){
-        this.setState({dairy: this.state.dairy + 1})
-        console.log(this.state.items[i].cat);
-        console.log(this.state.dairy);
-      }
-    })
   }
 
   updateFridge = () => {
@@ -42,12 +26,41 @@ class App extends Component {
       this.setState({items: res.data});
     })
     .catch(err => console.log(err));
-    this.countCat();
+  }
+
+  updateRecipebook = () => {
+    axios.get('/api/recipes')
+    .then(res => {
+      console.log(res.data)
+      this.setState({recipes: res.data});
+    })
+    .catch(err => console.log(err));
   }
 
   addItem(body){
     axios.post('/api/items', body).then(res => {
       this.setState({items: res.data})
+    }).catch(err => {
+      console.log(err)
+    })
+    
+    let fruitCount = this.state.fruits;
+    let vegCount = this.state.vegetables;
+    let dairyCount = this.state.dairy;
+    if(body.cat === 'Fruit'){
+      fruitCount = fruitCount + 1
+    } else if (body.cat === 'Vegetable'){
+      vegCount = vegCount + 1
+    } else if (body.cat === 'Dairy'){
+      dairyCount = dairyCount + 1
+    }
+    
+    this.setState({fruits: fruitCount, vegetables: vegCount, dairy: dairyCount})
+  }
+
+  addRecipe(body){
+    axios.post('/api/recipes', body).then(res => {
+      this.setState({recipes: res.data})
     }).catch(err => {
       console.log(err)
     })
@@ -60,6 +73,7 @@ class App extends Component {
     
   }
 
+
   render(){
     return (
       <div>
@@ -70,6 +84,14 @@ class App extends Component {
             updateFridgeFn={this.updateFridge}
             searchFridgeFn={this.searchFridge}
             items={this.state.items}
+            fruits={this.state.fruits}
+            veg={this.state.vegetables}
+            dairy={this.state.dairy}
+            />
+          <Recipebook 
+            recipes={this.state.recipes}
+            addRecipeFn={this.addRecipe}
+            updateRecipebookFn={this.updateRecipebook}
             />
         </div>
       </div>
