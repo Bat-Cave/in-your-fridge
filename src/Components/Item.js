@@ -30,14 +30,14 @@ class Item extends Component{
   }
 
   updateItem(id){
-    const { itemEdit, qtyEdit, unitEdit, catEdit, expEdit } = this.state
+    const { itemEdit, qtyEdit, unitEdit, catEdit, expEdit } = this.state;
     this.props.updateItemFn(id, {itemEdit, qtyEdit, unitEdit, catEdit, expEdit});
     this.toggleEdit();
   }
 
   deleteItem = (id) => {
-    this.props.deleteItemFn(id)
-  }
+    this.props.deleteItemFn(id);
+  };
 
   render(){
     return(

@@ -185,12 +185,16 @@ module.exports = {
     const { itemEdit, qtyEdit, unitEdit, catEdit, expEdit } = req.body;
     const i = itemsInFridge.findIndex(e => e.id === +id);
     const mmdd = expEdit.split('').splice(5, 5).join('').replace('-', '/');
-    const yyyy = expEdit.split('').splice(0, 5).join('').replace('-', '/');
+    const yyyy = `/${expEdit.split('').splice(0, 4).join('').replace('-', '/')}`;
+    if(expEdit.includes('/')){
+      itemsInFridge[id].exp = expEdit;
+    } else { 
+      itemsInFridge[id].exp = `${mmdd}${yyyy}`
+    }
     itemsInFridge[id].item = itemEdit ;
     itemsInFridge[id].qty = qtyEdit;
     itemsInFridge[id].unit = unitEdit;
     itemsInFridge[id].cat = catEdit;
-    itemsInFridge[id].exp = `${mmdd}${yyyy}`
     res.status(200).send(itemsInFridge);
   },
   updateRecipe: (req, res) => {

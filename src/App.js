@@ -27,12 +27,12 @@ class App extends Component {
       this.setState({items: res.data});
     })
     .catch(err => console.log(err));
+    console.log(this.state.items)
   }
 
   updateRecipebook = () => {
     axios.get('/api/recipes')
     .then(res => {
-      console.log(res.data)
       this.setState({recipes: res.data});
     })
     .catch(err => console.log(err));

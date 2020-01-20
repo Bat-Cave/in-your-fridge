@@ -55,7 +55,7 @@ class Fridge extends Component{
   updateItem = (id, body) => {
     axios.put(`/api/items/${id}`, body).then(res => {
     }).catch(err => console.log(err))
-    this.props.updateFridge();
+    this.props.updateFridgeFn();
   }
 
   deleteItem = (id) => {
