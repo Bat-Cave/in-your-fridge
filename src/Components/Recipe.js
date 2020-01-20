@@ -13,7 +13,6 @@ class Recipe extends Component{
 
   handleInput = (name, val) => {
     this.setState({[name] : val})
-    console.log(this.state[name]);
   }
 
   toggleEdit = () =>{
@@ -43,6 +42,16 @@ class Recipe extends Component{
         extractedIng = extractedIng + ` ${this.props.ing[i]},`
       }
     }
+
+    let ingCount = 0;
+    let splitItems = this.props.items.split(',');
+    for(let j = 0; j < splitItems.length; j++){
+      if(splitItems.includes(this.props.ing[j])){
+        ingCount = ingCount + 1;
+      }
+    }
+
+
     return(
       <div className='list-item'>
         {this.state.toggleEdit ? 
@@ -63,7 +72,7 @@ class Recipe extends Component{
             onChange={(e) => this.handleInput(e.target.name, e.target.value)}
             placeholder={extractedIng}/>
           : <p id='ingredient-c'>{extractedIng}</p>}
-        
+        {<p id='have-c'>{`${ingCount}/${this.props.ing.length} ingredients`}</p>}
         {this.state.toggleEdit ? 
           <p id='buttons-c'>
             <button onClick={() => this.updateRecipe(this.props.id)}><i className="fas fa-check"></i></button>

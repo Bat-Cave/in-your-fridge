@@ -118,12 +118,37 @@ const recipes = [{
   },
   {
     id: 1,
-    recipe: 'PB&J',
+    recipe: 'PB & J',
     ingredients: ['bread', 'peanut butter', 'jelly']
+  },
+  {
+    id: 2,
+    recipe: 'Chicken & Rice',
+    ingredients: ['chicken', 'rice']
+  },
+  {
+    id: 3,
+    recipe: 'Ham & Cheese Sandwich',
+    ingredients: ['bread', 'mayo', 'ham', 'cheese']
+  },
+  {
+    id: 4,
+    recipe: 'Ramen',
+    ingredients: ['Ramen', 'water']
+  },
+  {
+    id: 5,
+    recipe: 'Salad',
+    ingredients: ['lettuce', 'carrots', 'cherry tomatoes', 'cucumbers', 'italian dressing']
+  },
+  {
+    id: 6,
+    recipe: 'Apples & Peanut Butter',
+    ingredients: ['apples', 'peanut butter']
   }
 ]
 let itemId = 13;
-let recipeId = 2;
+let recipeId = 6;
 
 module.exports = {
   getItems: (req, res) => {

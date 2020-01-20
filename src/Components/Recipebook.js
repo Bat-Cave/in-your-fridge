@@ -36,7 +36,6 @@ class Recipebook extends Component {
 
   addRecipe = () => {
     const { recipeIn, ingIn } = this.state;
-    console.log(ingIn)
     if( !recipeIn || !ingIn){
       this.setState({error: 'error'})
       setTimeout(() => this.setState({error: 'none'}), 4000)
@@ -56,6 +55,7 @@ class Recipebook extends Component {
         <h2>Recipe Book</h2>
         <Recipelist 
           recipes={this.props.recipes}
+          items={this.props.items}
           updateRecipeFn={this.updateRecipe}
           deleteRecipeFn={this.deleteRecipe}
           />

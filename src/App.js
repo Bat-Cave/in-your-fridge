@@ -11,6 +11,7 @@ class App extends Component {
 
     this.state = {
       items: [],
+      itemNames: [],
       recipes: [],
       fruits: 3,
       vegetables: 4,
@@ -70,9 +71,16 @@ class App extends Component {
     axios.get(`/api/items/${text}`).then(res => {
       this.setState({items: res.data});
     }).catch(err => console.log(err));
-    
   }
 
+  findRecipe = () => {
+    const { items } = this.state;
+    const str = [];
+    items.forEach((item, i) => {
+      str.push(item.item.toLowerCase().split(' '))
+    })
+    this.setState({itemNames: str.toString()})
+  }
 
   render(){
     return (
@@ -83,6 +91,7 @@ class App extends Component {
             addItemFn={this.addItem}
             updateFridgeFn={this.updateFridge}
             searchFridgeFn={this.searchFridge}
+            findRecipeFn={this.findRecipe}
             items={this.state.items}
             fruits={this.state.fruits}
             veg={this.state.vegetables}
@@ -90,6 +99,7 @@ class App extends Component {
             />
           <Recipebook 
             recipes={this.state.recipes}
+            items={this.state.itemNames}
             addRecipeFn={this.addRecipe}
             updateRecipebookFn={this.updateRecipebook}
             />

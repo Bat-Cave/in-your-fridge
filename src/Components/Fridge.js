@@ -26,6 +26,7 @@ class Fridge extends Component{
 
   updateFridge = () => {
     this.props.updateFridgeFn();
+    this.props.findRecipeFn();
   }
 
   handleInput = (name, val) => {

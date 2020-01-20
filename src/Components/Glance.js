@@ -3,7 +3,7 @@ import React from 'react'
 const Glance = (props) => {
   return(
     <div className='glance'>
-      <div className='glance-r'>
+      <div className='glance-r glance-title'>
         <span className='label'>Items in Fridge:</span>
         <p>{props.items.length}</p>
       </div>

@@ -8,6 +8,7 @@ function Recipelist(props){
         <div className='fridge-header'>
           <p id='recipe-c'>Recipe</p>
           <p id='ingredient-c'>Ingredients</p>
+          <p id='have-c'>You have:</p>
           <p id='buttons-c'>
           </p>
         </div>
@@ -17,6 +18,7 @@ function Recipelist(props){
               <Recipe 
                 key={i}
                 id={i}
+                items={props.items}
                 recipe={recipe.recipe}
                 ing={recipe.ingredients}
                 updateRecipeFn={props.updateRecipeFn}
