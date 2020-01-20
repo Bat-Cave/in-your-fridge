@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from './Components/Header'
 import './App.css';
 import Fridge from './Components/Fridge';
-import Recipebook from './Components/Recipebook';
 import axios from 'axios';
 
 class App extends Component {
@@ -11,9 +10,30 @@ class App extends Component {
 
     this.state = {
       items: [],
+      fruits: 0,
+      vegetables: 0,
+      dairy: 0
     }
 
     this.addItem = this.addItem.bind(this);
+  }
+
+  countCat = () => {
+    this.state.items.forEach((item, i) => {
+      if(this.state.items[i].cat === 'Fruit'){
+        this.setState({fruits: this.state.fruits + 1})
+        console.log(this.state.items[i].cat);
+        console.log(this.state.fruits);
+      }else if(this.state.items[i].cat === 'Vegetable'){
+        this.setState({vegetables: this.state.vegetables + 1})
+        console.log(this.state.items[i].cat);
+        console.log(this.state.vegetables);
+      }else if(this.state.items[i].cat === 'Dairy'){
+        this.setState({dairy: this.state.dairy + 1})
+        console.log(this.state.items[i].cat);
+        console.log(this.state.dairy);
+      }
+    })
   }
 
   updateFridge = () => {
@@ -22,6 +42,7 @@ class App extends Component {
       this.setState({items: res.data});
     })
     .catch(err => console.log(err));
+    this.countCat();
   }
 
   addItem(body){
@@ -42,9 +63,7 @@ class App extends Component {
   render(){
     return (
       <div>
-        <Header 
-          items={this.state.items}
-        />
+        <Header />
         <div className='container'>
           <Fridge 
             addItemFn={this.addItem}
@@ -52,7 +71,6 @@ class App extends Component {
             searchFridgeFn={this.searchFridge}
             items={this.state.items}
             />
-          <Recipebook />
         </div>
       </div>
     );

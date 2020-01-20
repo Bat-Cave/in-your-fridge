@@ -11,6 +11,7 @@ class Fridge extends Component{
       itemIn: '',
       qtyIn: null,
       unitIn: '',
+      catIn: '',
       expIn: '',
       addError: '',
       error: 'none',
@@ -32,16 +33,19 @@ class Fridge extends Component{
   }
 
   addItem = () => {
-    const { itemIn, qtyIn, unitIn, expIn } = this.state;
-    if( !itemIn || !qtyIn || !expIn){
+    const { itemIn, qtyIn, unitIn, catIn, expIn } = this.state;
+    if( !itemIn || !qtyIn || !catIn || !expIn){
       this.setState({error: 'error'})
       setTimeout(() => this.setState({error: 'none'}), 4000)
     } else {
+      const mmdd = expIn.split('').splice(5, 5).join('').replace('-', '/');
+      const yyyy = expIn.split('').splice(0, 4).join('').replace('-', '/');
       this.props.addItemFn({
         item: itemIn,
         qty: qtyIn,
         unit: unitIn,
-        exp: expIn
+        cat: catIn,
+        exp: `${mmdd}/${yyyy}`
       })
       this.updateFridge();
     }
@@ -65,7 +69,7 @@ class Fridge extends Component{
 
   render(){
     return(
-      <div className='card fridge'>
+      <div className='card'>
         <h2>Fridge</h2>
         <Itemlist 
           items={this.props.items}
@@ -106,13 +110,28 @@ class Fridge extends Component{
                 <option value='gal'>Gallons</option>
               </select>
             </div>
-            <input 
-              name='expIn' 
-              type='date'
-              data-date-format="DD MMMM YYYY" 
-              placeholder='Expiration Date'
-              onChange={(e) => this.handleInput(e.target.name, e.target.value)}
-              />
+            <div className='qty-unit-container'>
+              <input 
+                name='expIn' 
+                type='date' 
+                id='qty-date'
+                onChange={(e) => this.handleInput(e.target.name, e.target.value)}
+                />
+              <select 
+                  name='catIn'
+                  onChange={(e) => this.handleInput(e.target.name, e.target.value)}>
+                  <option>Category</option>
+                  <option value='Fruit'>Fruit</option>
+                  <option value='Vegetable'>Vegetable</option>
+                  <option value='Dairy'>Dairy</option>
+                  <option value='Protein'>Protein</option>
+                  <option value='Grain'>Grain</option>
+                  <option value='Beverage'>Beverage</option>
+                  <option value='Condiment'>Condiment</option>
+                  <option value='Snack/Sweets'>Snack/Sweets</option>
+                  <option value='Other'>Other</option>
+                </select>
+              </div>
             <button onClick={this.addItem}>Add Item</button>
             <p className={this.state.error}>Please fill all input fields</p>
           </div>
@@ -127,16 +146,3 @@ class Fridge extends Component{
 
 export default Fridge
 
-/* Food Categories 
-Fruits
-Vegetables
-Dairy
-Proteins
-Grains
-Beverages
-Condiments
-Snacks/Sweets
-
-
-
-*/

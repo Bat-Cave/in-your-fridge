@@ -6,11 +6,12 @@ function Itemlist(props){
     return(
       <div className='table-container'>
         <div className='fridge-header'>
-          <p id='item-c'>Item</p>
-          <p id='qty-c'>Qty.</p>
-          <p id='unit-c'>Units</p>
-          <p id='exp-c'>Exp. Date</p>
-          <p id='buttons-c'>
+          <p className='item-c'>Item</p>
+          <p className='qty-c'>Qty.</p>
+          <p className='unit-c'>Units</p>
+          <p className='cat-c'>Category</p>
+          <p className='exp-c'>Exp. Date</p>
+          <p className='buttons-c'>
           </p>
         </div>
         <div className='list-container'>
@@ -22,6 +23,7 @@ function Itemlist(props){
                 item={item.item}
                 qty={item.qty}
                 unit={item.unit}
+                cat={item.cat}
                 exp={item.exp}
                 updateItemFn={props.updateItemFn}
                 deleteItemFn={props.deleteItemFn}
@@ -35,6 +37,7 @@ function Itemlist(props){
             name='search'
             className='fridge-search'
             placeholder='Search the fridge...'
+            autoComplete='off'
             onChange={(e) => props.handleInputFn( e.target.name, e.target.value)}
             />
             <button onClick={props.searchItemFn}><i className="fas fa-search"></i></button>

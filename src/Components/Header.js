@@ -4,7 +4,7 @@ function Header(props){
   return(
     <header>
       <span>In <span className='white'>Your</span> Fridge</span>
-      <nav>
+      <nav id='nav'>
         <a href='dashboard.com'>Dashboard</a>
         <a href='dashboard.com'>Recipes</a>
         <a href='dashboard.com'>Account</a>

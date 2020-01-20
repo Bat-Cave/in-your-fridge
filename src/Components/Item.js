@@ -9,6 +9,7 @@ class Item extends Component{
       itemEdit: '',
       qtyEdit: null,
       unitEdit: '',
+      catEdit: '',
       expEdit: ''
     }
   }
@@ -21,21 +22,17 @@ class Item extends Component{
   toggleEdit = () =>{
     this.setState({
       toggleEdit: !this.state.toggleEdit,
-      itemEdit: '',
-      qtyEdit: '',
-      unitEdit: '',
-      expEdit: ''})
+      itemEdit: this.props.item,
+      qtyEdit: this.props.qty,
+      unitEdit: this.props.unit,
+      catEdit: this.props.cat,
+      expEdit: this.props.exp})
   }
 
   updateItem(id){
-    const { itemEdit, qtyEdit, unitEdit, expEdit } = this.state
-    if( !itemEdit || !qtyEdit || !unitEdit || !expEdit){
-      this.setState({addError: 'Please fill all input fields'})
-      setTimeout(() => this.setState({addError: ''}), 4000)
-    } else {
-      this.props.updateItemFn(id, {itemEdit, qtyEdit, unitEdit, expEdit});
-      this.toggleEdit();
-    }
+    const { itemEdit, qtyEdit, unitEdit, catEdit, expEdit } = this.state
+    this.props.updateItemFn(id, {itemEdit, qtyEdit, unitEdit, catEdit, expEdit});
+    this.toggleEdit();
   }
 
   deleteItem = (id) => {
@@ -44,7 +41,7 @@ class Item extends Component{
 
   render(){
     return(
-      <div onDoubleClick={this.toggleEdit} className='list-item'>
+      <div className='list-item'>
         {this.state.toggleEdit ? 
           <input
             id='item-c' 
@@ -78,10 +75,29 @@ class Item extends Component{
           </select>
           : <p id='unit-c'>{this.props.unit}</p>}
         {this.state.toggleEdit ? 
+          <select 
+            id='cat-c' 
+            name='catEdit'
+            value={this.state.catEdit}
+            onChange={(e) => this.handleInput(e.target.name, e.target.value)}>
+            <option>Category</option>
+            <option value='Fruit'>Fruit</option>
+            <option value='Vegetable'>Vegetable</option>
+            <option value='Dairy'>Dairy</option>
+            <option value='Protein'>Protein</option>
+            <option value='Grain'>Grain</option>
+            <option value='Beverage'>Beverage</option>
+            <option value='Condiment'>Condiment</option>
+            <option value='Snack/Sweets'>Snack/Sweets</option>
+            <option value='Other'>Other</option>
+          </select>
+          : <p id='cat-c'>{this.props.cat}</p>}
+        {this.state.toggleEdit ? 
           <input 
             id='exp-c' 
             name='expEdit' 
             type='date'
+            value={this.state.expEdit}
             onChange={(e) => this.handleInput(e.target.name, e.target.value)}
             placeholder={this.props.exp}/>
           : <p id='exp-c'>{this.props.exp}</p>}
