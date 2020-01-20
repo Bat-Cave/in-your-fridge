@@ -183,7 +183,6 @@ module.exports = {
   updateItem: (req, res) => {
     const {id} = req.params;
     const { itemEdit, qtyEdit, unitEdit, catEdit, expEdit } = req.body;
-    const i = itemsInFridge.findIndex(e => e.id === +id);
     const mmdd = expEdit.split('').splice(5, 5).join('').replace('-', '/');
     const yyyy = `/${expEdit.split('').splice(0, 4).join('').replace('-', '/')}`;
     if(expEdit.includes('/')){
@@ -200,7 +199,6 @@ module.exports = {
   updateRecipe: (req, res) => {
     const {id} = req.params;
     const { recipeEdit, split } = req.body;
-    const i = itemsInFridge.findIndex(e => e.id === +id);
     recipes[id].recipe = recipeEdit ;
     recipes[id].ingredients = split;
     res.status(200).send(itemsInFridge);

@@ -109,6 +109,7 @@ class Fridge extends Component{
                 <option value='ml'>Milliliters</option>
                 <option value='l'>Liters</option>
                 <option value='gal'>Gallons</option>
+                <option value='oz'>Ounces</option>
                 <option value='lb'>Pounds</option>
               </select>
             </div>

@@ -67,11 +67,17 @@ class Item extends Component{
             value={this.state.unitEdit}
             onChange={(e) => this.handleInput(e.target.name, e.target.value)}>
             <option>Units</option>
-            <option value='oz'>Ounces</option>
-            <option value='gal'>Gallons</option>
+            <option value='tsp.'>Teaspoons</option>
+            <option value='tbl.'>Tablespoons</option>
+            <option value='fl oz'>Fluid Ounces</option>
+            <option value='c'>Cups</option>
             <option value='p'>Pints</option>
             <option value='q'>Quarts</option>
-            <option value='c'>Cups</option>
+            <option value='ml'>Milliliters</option>
+            <option value='l'>Liters</option>
+            <option value='gal'>Gallons</option>
+            <option value='oz'>Ounces</option>
+            <option value='lb'>Pounds</option>
           </select>
           : <p id='unit-c'>{this.props.unit}</p>}
         {this.state.toggleEdit ? 
